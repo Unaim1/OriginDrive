@@ -1,0 +1,339 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --origin-navy:#131F33;
+    --origin-ice:#C9D6E3;
+    --ink:#131F33;
+    --slate:#57687A;
+    --paper:#FFFFFF;
+    --fog:#F0F4F8;
+    --mist-line:#DCE3EA;
+    --success:#2F7D5E;
+    --success-bg:#E4F1EC;
+    --warning:#B8862B;
+    --warning-bg:#F7EFDD;
+    --error:#B23B3B;
+    --error-bg:#F6E7E7;
+    --radius:5px;
+    --shadow:0 1px 2px rgba(19,31,51,.08);
+  }
+  [data-theme="dark"]{
+    --paper:#0F1826;
+    --fog:#131F33;
+    --ink:#C9D6E3;
+    --slate:#93A4B3;
+    --origin-navy:#6E90B3;
+    --mist-line:#26333F;
+    --success-bg:#16241E;
+    --warning-bg:#26200F;
+    --error-bg:#271818;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    transition:background .2s ease, color .2s ease;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important;} }
+  :focus-visible{outline:2px solid var(--origin-navy); outline-offset:2px;}
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 24px;}
+  @media (min-width:640px){ .wrap{padding:0 40px;} }
+  @media (min-width:1024px){ .wrap{padding:0 64px;} }
+
+  .eyebrow{
+    display:inline-block;
+    background:var(--origin-navy);
+    color:var(--origin-ice);
+    font:italic 700 12px/1 'Inter', sans-serif;
+    letter-spacing:.03em;
+    padding:6px 12px;
+    border-radius:3px;
+  }
+  .meta{
+    font:500 13px/1.4 'Inter', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--slate);
+  }
+
+  header{
+    border-bottom:1px solid var(--mist-line);
+    position:sticky; top:0; background:var(--paper); z-index:10;
+  }
+  .header-inner{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
+  .brand{
+    background:var(--origin-navy);
+    color:var(--origin-ice);
+    font:italic 700 20px/1 'Inter', sans-serif;
+    padding:10px 16px;
+    border-radius:4px;
+  }
+  nav{display:none; gap:32px; font:500 15px 'Inter', sans-serif;}
+  nav a{color:var(--slate);}
+  nav a:hover{color:var(--origin-navy);}
+  @media (min-width:900px){ nav{display:flex;} }
+  .header-actions{display:flex; align-items:center; gap:16px;}
+  .icon-btn{
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--mist-line); background:transparent; cursor:pointer;
+    color:var(--ink);
+  }
+  .icon-btn:hover{border-color:var(--origin-navy); color:var(--origin-navy);}
+  .socials{display:flex; gap:8px;}
+
+  .hero{padding:96px 0 64px;}
+  @media (min-width:1024px){ .hero{padding:128px 0 96px;} }
+  .hero-plate{background:var(--origin-navy); border-radius:8px; padding:64px 32px; text-align:center;}
+  @media (min-width:640px){ .hero-plate{padding:96px 64px;} }
+  .hero-plate h1{
+    font:italic 700 clamp(36px,7vw,72px)/1.05 'Inter', sans-serif;
+    color:var(--origin-ice);
+    letter-spacing:-.01em;
+  }
+  .hero-plate p{color:var(--origin-ice); opacity:.85; font-size:17px; max-width:480px; margin:20px auto 0;}
+  .btn{display:inline-block; font:600 15px 'Inter', sans-serif; padding:13px 28px; border-radius:4px; cursor:pointer; border:1.5px solid transparent;}
+  .btn-light{background:#fff; color:var(--origin-navy); margin-top:32px;}
+  .btn-light:hover{background:var(--origin-ice);}
+  .btn-outline{background:transparent; border-color:var(--origin-navy); color:var(--origin-navy);}
+  .btn-outline:hover{background:var(--fog);}
+
+  section{padding:64px 0;}
+  @media (min-width:1024px){ section{padding:96px 0;} }
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:16px;}
+  .section-head h2{font:italic 700 32px/1.1 'Inter', sans-serif;}
+  .section-head .see-all{font:600 14px 'Inter'; color:var(--origin-navy); white-space:nowrap;}
+
+  .grid-3{display:grid; gap:24px; grid-template-columns:1fr;}
+  @media (min-width:720px){ .grid-3{grid-template-columns:repeat(3,1fr);} }
+
+  .card{background:var(--paper); border:1px solid var(--mist-line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
+  .card-img{
+    height:160px; background:linear-gradient(135deg, var(--origin-ice), var(--fog));
+    display:flex; align-items:center; justify-content:center; color:var(--slate); font-size:13px;
+  }
+  .card-body{padding:20px;}
+  .card-body .eyebrow{margin-bottom:12px;}
+  .card-body h3{font:600 19px 'Inter'; margin-bottom:6px;}
+  .card-body .meta{display:block; margin-bottom:14px;}
+  .chip{display:inline-flex; align-items:center; gap:6px; font:600 13px 'Inter'; padding:5px 10px; border-radius:20px;}
+  .chip-ok{color:var(--success); background:var(--success-bg);}
+  .chip-warn{color:var(--warning); background:var(--warning-bg);}
+  .chip-full{color:var(--error); background:var(--error-bg);}
+
+  .alt-bg{background:var(--fog);}
+
+  .news-list{display:flex; flex-direction:column;}
+  .news-item{display:flex; justify-content:space-between; gap:24px; padding:24px 0; border-bottom:1px solid var(--mist-line); flex-wrap:wrap;}
+  .news-item:last-child{border-bottom:none;}
+  .news-item h3{font:600 18px 'Inter'; margin-bottom:6px;}
+  .news-item p{color:var(--slate); font-size:15px; max-width:560px;}
+
+  .spotlight{display:grid; gap:32px; align-items:center; grid-template-columns:1fr;}
+  @media (min-width:800px){ .spotlight{grid-template-columns:1fr 1fr;} }
+  .spotlight-img{
+    height:260px; border-radius:8px; background:linear-gradient(135deg, var(--origin-navy), #0A121F);
+    display:flex; align-items:center; justify-content:center; color:var(--origin-ice); font-size:13px;
+  }
+  .spotlight-text .eyebrow{margin-bottom:16px;}
+  .spotlight-text h3{font:italic 700 26px 'Inter'; margin-bottom:10px;}
+  .spotlight-text p{color:var(--slate); margin-bottom:8px;}
+
+  .sponsors{display:flex; flex-wrap:wrap; gap:16px; justify-content:center;}
+  .sponsor-box{
+    width:150px; height:70px; border:1px solid var(--mist-line); border-radius:var(--radius);
+    display:flex; align-items:center; justify-content:center; color:var(--slate); font:500 13px 'Inter'; background:var(--paper);
+  }
+
+  footer{border-top:1px solid var(--mist-line); padding:64px 0 32px; background:var(--fog);}
+  .footer-grid{display:grid; gap:32px; grid-template-columns:1fr; margin-bottom:40px;}
+  @media (min-width:720px){ .footer-grid{grid-template-columns:2fr 1fr 1fr;} }
+  .footer-grid h4{font:600 14px 'Inter'; margin-bottom:14px;}
+  .footer-grid a, .footer-grid p{color:var(--slate); font-size:14px; display:block; margin-bottom:10px;}
+  .footer-grid a:hover{color:var(--origin-navy);}
+  .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; border-top:1px solid var(--mist-line); flex-wrap:wrap; gap:16px; font-size:13px; color:var(--slate);}
+</style>
+
+<header>
+  <div class="wrap header-inner">
+    <span class="brand">OriginDrive</span>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Eventos</a>
+      <a href="#">Noticias</a>
+      <a href="#">Socios</a>
+      <a href="#">Contacto</a>
+    </nav>
+    <div class="header-actions">
+      <div class="socials">
+        <button class="icon-btn" aria-label="Instagram" title="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="YouTube" title="YouTube">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="WhatsApp" title="WhatsApp">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 19l1.2-3.6A7.5 7.5 0 1 1 12 19.5c-1.2 0-2.3-.3-3.3-.8z"/></svg>
+        </button>
+      </div>
+      <button class="icon-btn" id="theme-toggle" aria-label="Cambiar a modo oscuro" title="Modo oscuro">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <div class="hero-plate">
+      <h1>OriginDrive</h1>
+      <p>Carretera, comunidad y pasión por los coches. Rutas de montaña, quedadas y track days, todo en un mismo sitio.</p>
+      <a href="#" class="btn btn-light">Ver próximos eventos</a>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Próximos eventos</h2>
+        <a href="#" class="see-all">Ver calendario completo →</a>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-img">Foto del evento</div>
+          <div class="card-body">
+            <span class="eyebrow">RUTA DE MONTAÑA</span>
+            <h3>Puerto de Navacerrada</h3>
+            <span class="meta">Sáb 15 agosto · 09:00</span>
+            <span class="chip chip-ok">● Quedan 4 plazas</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">Foto del evento</div>
+          <div class="card-body">
+            <span class="eyebrow">QUEDADA</span>
+            <h3>Encuentro mensual — Aparcamiento Norte</h3>
+            <span class="meta">Dom 23 agosto · 10:30</span>
+            <span class="chip chip-warn">● Últimas 2 plazas</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">Foto del evento</div>
+          <div class="card-body">
+            <span class="eyebrow">TRACK DAY</span>
+            <h3>Circuito del Jarama</h3>
+            <span class="meta">Sáb 5 septiembre · 08:00</span>
+            <span class="chip chip-full">● Completo — lista de espera</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt-bg">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Últimas noticias</h2>
+        <a href="#" class="see-all">Ver todas →</a>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div>
+            <span class="meta">12 jul 2026</span>
+            <h3>Resumen de la quedada de julio</h3>
+            <p>Fotos, anécdotas y los coches que más dieron que hablar en el último encuentro mensual.</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <div>
+            <span class="meta">2 jul 2026</span>
+            <h3>Nueva ruta para septiembre</h3>
+            <p>Abrimos inscripción para una ruta de montaña pensada para todos los niveles.</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <div>
+            <span class="meta">28 jun 2026</span>
+            <h3>Bienvenida a los nuevos socios del trimestre</h3>
+            <p>Un repaso a quiénes se han unido al club este trimestre y sus coches.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head"><h2>Coche del mes</h2></div>
+      <div class="spotlight">
+        <div class="spotlight-img">Foto del coche destacado</div>
+        <div class="spotlight-text">
+          <span class="eyebrow">COCHE DEL MES</span>
+          <h3>[Socio] · [Marca y modelo]</h3>
+          <p>Espacio de ejemplo: aquí se destaca cada mes el coche de un socio, con una breve reseña de sus modificaciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt-bg">
+    <div class="wrap">
+      <div class="section-head"><h2 style="font-size:22px;">Con el apoyo de</h2></div>
+      <div class="sponsors">
+        <div class="sponsor-box">Patrocinador</div>
+        <div class="sponsor-box">Patrocinador</div>
+        <div class="sponsor-box">Patrocinador</div>
+        <div class="sponsor-box">Patrocinador</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="brand" style="font-size:16px; padding:8px 12px;">OriginDrive</span>
+        <p style="margin-top:16px; max-width:320px;">Comunidad de carretera y pasión por los coches. Rutas, quedadas y track days.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <a href="#">Eventos</a>
+        <a href="#">Noticias</a>
+        <a href="#">Socios</a>
+        <a href="#">Contacto</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad y cookies</a>
+        <a href="#">Términos de uso</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 OriginDrive</span>
+      <div class="socials">
+        <button class="icon-btn" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></button>
+        <button class="icon-btn" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/></svg></button>
+        <button class="icon-btn" aria-label="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 19l1.2-3.6A7.5 7.5 0 1 1 12 19.5c-1.2 0-2.3-.3-3.3-.8z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    toggle.setAttribute('aria-label', isDark ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro');
+  });
+</script>
